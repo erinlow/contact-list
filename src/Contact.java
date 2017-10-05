@@ -9,6 +9,16 @@ public class Contact {
 		this.phoneNumber = number;
 	}
 
+	public void setName(String name) {
+		this.name = name;
+	}
+
+
+	public void setPhoneNumber(String phoneNumber) {
+		this.phoneNumber = phoneNumber;
+	}
+
+
 	public String getName() {
 		return name;
 	}

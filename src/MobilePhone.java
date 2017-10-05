@@ -7,14 +7,18 @@ public class MobilePhone {
 		this.contactList = new ArrayList<Contact>();
 	}
 	
+	public ArrayList<Contact> getContactList() {
+		return contactList;
+	}
+
 	// Method to add a new contact
-	public void addContact(Contact contact) {
-		if(search(contact) >= 0) {
-			System.out.println("Contact already exists");
+	public boolean addContact(Contact contact) {
+		if(search(contact.getName()) >= 0) {
+			return false;
 		}
 		else {
 			this.contactList.add(contact);
-			System.out.println("Contact was succefully added");
+			return true;
 		}
 	}
 	
@@ -34,23 +38,18 @@ public class MobilePhone {
 	public void removeContact(String name) {
 		if(search(name) >=0 ) {
 			this.contactList.remove(search(name));
-			System.out.print("Contact was removed");
+			System.out.println("Contact was removed.");
 		}
-		else {
-			System.out.println("Contact does not exist.");
-		}
-		
 	}
 	
 	// Method to search for an existing name
-	public void queryContacts(String name) {
+	public Contact queryContacts(String name) {
 		int index = search(name);
 		if(index >=0 ) {
-			Contact contact = this.contactList.get(index);
-			System.out.println("The phone number is: " + contact.getPhoneNumber());
+			return this.contactList.get(index);
 		}
 		else {
-			System.out.println("Contact does not exist.");
+			return null;
 		}
 	}
 	
@@ -65,6 +64,21 @@ public class MobilePhone {
 		}
 		else {
 			System.out.println("You have no contacts in your contact list.");
+		}
+	}
+	
+	public Contact getAssociatedNum(String name) {
+		Contact existingContact = this.contactList.get(search(name));
+		return existingContact;
+	}
+	
+	public boolean onFile(String name) {
+		int index = search(name);
+		if(index >=0) {
+			return true;
+		}
+		else {
+			return false;
 		}
 	}
 
