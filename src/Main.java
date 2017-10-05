@@ -31,7 +31,7 @@ public class Main {
 				removeContact();
 				break;
 			case 5:
-				queryContact();
+				search();
 				break;
 			case 6: 
 				printMenu();
@@ -40,9 +40,17 @@ public class Main {
 		}
 		shutDown();
 	}
-	private static void queryContact() {
-		// TODO Auto-generated method stub
+	private static void search() {
+		System.out.print("Enter the name of the contact you are searching for: ");
+		String name = keyboard.nextLine();
 		
+		Contact existingContact = mobilePhone.queryContacts(name);
+		if(existingContact != null) {
+			System.out.println(name + "'s phone number is: "  + existingContact.getPhoneNumber());
+		}
+		else {
+			System.out.println("Contact does not seem to exist.");
+		}
 	}
 	
 	// Removes an existing contact from the MobilePhone contact list.
@@ -114,8 +122,8 @@ public class Main {
 		System.out.print("Enter the new contact name: ");
 		String name = keyboard.nextLine();
 		
-		if(mobilePhone.onFile(name)) {
-			Contact existingContact = mobilePhone.getAssociatedNum(name);
+		Contact existingContact = mobilePhone.queryContacts(name);
+		if(existingContact != null) {
 			System.out.println("That name already has a phone number associated with it.");
 			System.out.println("It is: "+ existingContact.getPhoneNumber());
 		}

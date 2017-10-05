@@ -26,7 +26,7 @@ public class MobilePhone {
 	public void updateContact(Contact oldContact, Contact newContact) {
 		int index = search(oldContact);
 		if(index < 0) {
-			System.out.println("Contact does not exist");
+			System.out.println("Contact does not exist.");
 		}
 		else {
 			this.contactList.set(index, newContact);
@@ -42,7 +42,7 @@ public class MobilePhone {
 		}
 	}
 	
-	// Method to search for an existing name
+	// Method to search for an existing name. Returns a Contact.
 	public Contact queryContacts(String name) {
 		int index = search(name);
 		if(index >=0 ) {
@@ -50,6 +50,17 @@ public class MobilePhone {
 		}
 		else {
 			return null;
+		}
+	}
+	
+	// Method to search for an existing name. Returns a boolean.
+	public boolean onFile(String name) {
+		int index = search(name);
+		if(index >=0) {
+			return true;
+		}
+		else {
+			return false;
 		}
 	}
 	
@@ -64,21 +75,6 @@ public class MobilePhone {
 		}
 		else {
 			System.out.println("You have no contacts in your contact list.");
-		}
-	}
-	
-	public Contact getAssociatedNum(String name) {
-		Contact existingContact = this.contactList.get(search(name));
-		return existingContact;
-	}
-	
-	public boolean onFile(String name) {
-		int index = search(name);
-		if(index >=0) {
-			return true;
-		}
-		else {
-			return false;
 		}
 	}
 
